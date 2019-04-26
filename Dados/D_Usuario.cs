@@ -22,6 +22,7 @@ namespace Dados
             GC.SuppressFinalize(this);
         }
 
+        #region CRUD
         public void Insert(Usuario Model)
         {
             try
@@ -42,22 +43,10 @@ namespace Dados
                 throw new Exception("Usuario: " + ex.Message);
             }
         }
-
-        public Task InsertAsync(Usuario Model)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Usuario> SelectAll()
         {
             throw new NotImplementedException();
         }
-
-        public Task<IEnumerable<Usuario>> SelectAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public int SelectIdentity()
         {
             try
@@ -76,33 +65,39 @@ namespace Dados
                 throw;
             }
         }
-
-        public Task<int> SelectIdentityAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public Usuario SelectOneLine(int Id)
         {
             throw new NotImplementedException();
         }
-
-        public Task<Usuario> SelectOneLineAsync(int Id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(Usuario Model)
         {
             throw new NotImplementedException();
         }
-
-        public Task UpdateAsync(Usuario Model)
+        #endregion
+        #region CRUD_ASYNC
+        public Task InsertAsync(Usuario Model)
         {
             throw new NotImplementedException();
         }
+        public Task<IEnumerable<Usuario>> SelectAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+        public Task<int> SelectIdentityAsync()
+        {
+            throw new NotImplementedException();
+        }
+        public Task<Usuario> SelectOneLineAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
+        public Task UpdateAsync(Usuario Model)
+        {
+            throw new NotImplementedException();
+        } 
+        #endregion
 
-        #region Others
+        #region OTHERS
         public bool HasUser(string Login, string Senha)
         {
             try
@@ -120,6 +115,58 @@ namespace Dados
                     }
                 }
                 return Has;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public Usuario Login(string Usuario, string Senha)
+        {
+            try
+            {
+                Usuario usuario = null;
+                using (SqlCommand cmd = _conexao.Open().CreateCommand())
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = 
+                        "SELECT " +
+                        " P.NOME," +
+                        " P.SOBRENOME," +
+                        " P.INSCRICAO," +
+                        " P.NASCIMENTO," +
+                        " U.ID AS 'USUARIOID', " +
+                        " U.EMAIL, " +
+                        " U.CONFIRMACAOEMAIL," +
+                        " U.SITUACAO" +
+                        " FROM USUARIO U" +
+                        " INNER JOIN PESSOA P ON P.ID = U.PESSOAID" +
+                        " WHERE (U.[LOGIN] = @LOGIN OR U.EMAIL = @LOGIN) AND U.SENHA = @SENHA";
+                    cmd.Parameters.AddWithValue("@LOGIN", Usuario);
+                    cmd.Parameters.AddWithValue("@SENHA", Senha);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            usuario = new Usuario();
+                            while (reader.Read())
+                            {
+                                usuario.Pessoa = new Pessoa
+                                {
+                                    Nome                    = (string)reader["NOME"],
+                                    Sobrenome               = (string)reader["SOBRENOME"],
+                                    Inscricao               = (string)reader["INSCRICAO"],
+                                    Nascimento              = (DateTime)reader["NASCIMENTO"],
+                                };
+                                usuario.Id                  = (int)reader["USUARIOID"];
+                                usuario.Email               = (string)reader["EMAIL"];
+                                usuario.ConfirmacaoEmail    = (bool)reader["CONFIRMACAOEMAIL"];
+                                usuario.Situacao            = (bool)reader["SITUACAO"];
+                            }
+                        }
+                    }
+                }
+                return usuario;
             }
             catch (Exception)
             {

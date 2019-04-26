@@ -16,7 +16,7 @@ namespace Negocio
         ///     Verifica se o usuário existe na base de dados. Se não existir insere a pessoa e depois o usuário
         /// </summary>
         /// <param name="Model"></param>
-        /// <returns></returns>
+        /// <returns name="Warning">Retorna vazio caso haja tudo bem, senão preenchida.</returns>
         public static string Insert(Usuario Model)
         {
             try
@@ -43,6 +43,26 @@ namespace Negocio
                     }
                 }
                 return Warning;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static Usuario Logar(string Usuario, string Senha)
+        {
+            try
+            {
+                Usuario usuario = null;
+                using (IConexao conexao = new ConexaoSqlServer())
+                {
+                    using(D_Usuario d_Usuario = new D_Usuario(conexao))
+                    {
+                        usuario = d_Usuario.Login(Usuario, Senha);
+                    }
+                }
+                return usuario;
             }
             catch (Exception ex)
             {

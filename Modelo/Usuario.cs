@@ -15,5 +15,6 @@ namespace Modelo
         public int PessoaId { get; set; }
         public Pessoa Pessoa { get; set; }
         public bool Situacao { get; set; }
+        public bool ConfirmacaoEmail { get; set; }
     }
 }
