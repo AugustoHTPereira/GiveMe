@@ -44,7 +44,6 @@ namespace GiveMe
                 MessageBox.Show(ex.Message, "Ops !");
                 return;
             }
-
             // VALIDA O LOGIN DO USUÁRIO
             if(_Usuario == null)
             {
@@ -62,7 +61,6 @@ namespace GiveMe
                 return;
             }
             // FIM VALIDA O LOGIN DO USUÁRIO
-
             frm_Master master = new frm_Master(_Usuario);
             master.Show();
             this.Hide();
