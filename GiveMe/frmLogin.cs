@@ -32,17 +32,21 @@ namespace GiveMe
                 return;
             }
 
-            if(txtLogin.Text == txtSenha.Text)
+            try
             {
-                frm_Master master = new frm_Master();
-                master.Show();
-                this.Hide();
+
             }
-            else
+            catch (Exception ex)
             {
-                lblErro.Text = "Os dados não condizem";
-                return;
+
+                throw;
             }
+        }
+
+        private void lkbRegistrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RegistrarUsuario form = new RegistrarUsuario();
+            form.Show();
         }
     }
 }

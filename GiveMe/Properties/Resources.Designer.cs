@@ -73,6 +73,26 @@ namespace GiveMe.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_checkmark_filled_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-checkmark-filled-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_checkmark_filled_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-checkmark-filled-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_internal_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-internal-100", resourceCulture);

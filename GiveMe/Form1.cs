@@ -13,8 +13,10 @@ namespace GiveMe
 {
     public partial class frm_Master : Form
     {
-        public frm_Master()
+        Usuario _Usuario;
+        public frm_Master(Usuario usuario)
         {
+            _Usuario = usuario;
             InitializeComponent();
             lblVersao.Text = "V 1.00.0.0";
         }

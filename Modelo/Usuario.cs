@@ -12,6 +12,8 @@ namespace Modelo
         public string Login { get; set; }
         public string Senha { get; set; }
         public string Email { get; set; }
+        public int PessoaId { get; set; }
+        public Pessoa Pessoa { get; set; }
         public bool Situacao { get; set; }
     }
 }

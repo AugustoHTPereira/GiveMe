@@ -23,6 +23,7 @@ namespace Modelo
         public Usuario UsuarioCriacao { get; set; }
         public Usuario UsuarioLocatario { get; set; }
         public status Status { get; set; }
+        //public Imagem Foto { get; set; }
         public bool Situacao { get; set; }
     }
 }
