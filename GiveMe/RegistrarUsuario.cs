@@ -1,4 +1,5 @@
-﻿using Modelo;
+﻿using GiveMe.Utils;
+using Modelo;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,9 @@ namespace GiveMe
                     MessageBox.Show(str_RetornoCadastro, "Ops !");
                     return;
                 }
+                // ENVIA EMAIL DE CONFIRMACAO
+                Email.Send(usuario.Email, "Olá, acabamos de verificar que você cadastrou esse e-mail em nossa rede GIVE-ME, para acessar a rede você precisa confirmar seu cadastro, para isso basta clicar <a href='#'>aqui</a>", "Confirmação de cadastro");
+                // FIM ENVIA EMAIL DE CONFIRMACAO
             }
             catch (Exception ex)
             {
