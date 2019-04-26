@@ -73,7 +73,7 @@ namespace Dados
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Pessoa> SelectAll()
+        public IList<Pessoa> SelectAll()
         {
             throw new NotImplementedException();
         }
@@ -84,7 +84,7 @@ namespace Dados
         {
             throw new NotImplementedException();
         }
-        public Task<IEnumerable<Pessoa>> SelectAllAsync()
+        public Task<IList<Pessoa>> SelectAllAsync()
         {
             throw new NotImplementedException();
         }

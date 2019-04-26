@@ -43,7 +43,7 @@ namespace Dados
                 throw new Exception("Usuario: " + ex.Message);
             }
         }
-        public IEnumerable<Usuario> SelectAll()
+        public IList<Usuario> SelectAll()
         {
             throw new NotImplementedException();
         }
@@ -79,7 +79,7 @@ namespace Dados
         {
             throw new NotImplementedException();
         }
-        public Task<IEnumerable<Usuario>> SelectAllAsync()
+        public Task<IList<Usuario>> SelectAllAsync()
         {
             throw new NotImplementedException();
         }

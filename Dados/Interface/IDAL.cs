@@ -11,7 +11,7 @@ namespace Dados.Interface
         #region CRUD
         void Insert(T Model);
         void Update(T Model);
-        IEnumerable<T> SelectAll();
+        IList<T> SelectAll();
         T SelectOneLine(int Id);
         int SelectIdentity();
         #endregion
@@ -19,7 +19,7 @@ namespace Dados.Interface
         #region CRUD_ASYNC
         Task InsertAsync(T Model);
         Task UpdateAsync(T Model);
-        Task<IEnumerable<T>> SelectAllAsync();
+        Task<IList<T>> SelectAllAsync();
         Task<T> SelectOneLineAsync(int Id);
         Task<int> SelectIdentityAsync(); 
         #endregion

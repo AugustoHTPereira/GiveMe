@@ -53,7 +53,7 @@ namespace GiveMe
 
         private void btnMeusProdutos_Click(object sender, EventArgs e)
         {
-            frmProdutos produtos = new frmProdutos();
+            frmProdutos produtos = new frmProdutos(_Usuario);
             produtos.SetName("MEUS PRODUTOS");
             ShowInMaster(produtos, pnlConteudo);
         }
