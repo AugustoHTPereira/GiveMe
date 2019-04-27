@@ -35,14 +35,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.gbPessoais = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.txtSobrenome = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtNascimento = new System.Windows.Forms.MaskedTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtInscricao = new System.Windows.Forms.TextBox();
-            this.txtNascimento = new System.Windows.Forms.MaskedTextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtSobrenome = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
             this.btnEntrar = new System.Windows.Forms.Button();
             this.gbPessoais.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +53,7 @@
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUsuario.Font = new System.Drawing.Font("Malgun Gothic Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.Location = new System.Drawing.Point(12, 52);
+            this.txtUsuario.MaxLength = 15;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(275, 39);
             this.txtUsuario.TabIndex = 1;
@@ -81,6 +82,7 @@
             this.txtSenha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSenha.Font = new System.Drawing.Font("Malgun Gothic Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.Location = new System.Drawing.Point(293, 52);
+            this.txtSenha.MaxLength = 15;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(275, 39);
@@ -122,43 +124,25 @@
             this.gbPessoais.TabStop = false;
             this.gbPessoais.Text = "Dados Pessoais";
             // 
-            // label4
+            // label7
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 27);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 17);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Nome";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(279, 104);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 17);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Nascimento";
             // 
-            // txtNome
+            // txtNascimento
             // 
-            this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNome.Font = new System.Drawing.Font("Malgun Gothic Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(6, 47);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(269, 39);
-            this.txtNome.TabIndex = 4;
-            // 
-            // txtSobrenome
-            // 
-            this.txtSobrenome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            this.txtSobrenome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSobrenome.Font = new System.Drawing.Font("Malgun Gothic Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSobrenome.Location = new System.Drawing.Point(281, 47);
-            this.txtSobrenome.Name = "txtSobrenome";
-            this.txtSobrenome.Size = new System.Drawing.Size(269, 39);
-            this.txtSobrenome.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(278, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 17);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Sobrenome";
+            this.txtNascimento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.txtNascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtNascimento.Location = new System.Drawing.Point(282, 124);
+            this.txtNascimento.Mask = "99/99/9999";
+            this.txtNascimento.MinimumSize = new System.Drawing.Size(220, 39);
+            this.txtNascimento.Name = "txtNascimento";
+            this.txtNascimento.Size = new System.Drawing.Size(268, 36);
+            this.txtNascimento.TabIndex = 7;
             // 
             // label6
             // 
@@ -179,25 +163,43 @@
             this.txtInscricao.Size = new System.Drawing.Size(269, 39);
             this.txtInscricao.TabIndex = 6;
             // 
-            // txtNascimento
+            // label5
             // 
-            this.txtNascimento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            this.txtNascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.txtNascimento.Location = new System.Drawing.Point(282, 124);
-            this.txtNascimento.Mask = "99/99/9999";
-            this.txtNascimento.MinimumSize = new System.Drawing.Size(220, 39);
-            this.txtNascimento.Name = "txtNascimento";
-            this.txtNascimento.Size = new System.Drawing.Size(268, 36);
-            this.txtNascimento.TabIndex = 7;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(278, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 17);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Sobrenome";
             // 
-            // label7
+            // label4
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(279, 104);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 17);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "Nascimento";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 17);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Nome";
+            // 
+            // txtSobrenome
+            // 
+            this.txtSobrenome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.txtSobrenome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSobrenome.Font = new System.Drawing.Font("Malgun Gothic Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSobrenome.Location = new System.Drawing.Point(281, 47);
+            this.txtSobrenome.Name = "txtSobrenome";
+            this.txtSobrenome.Size = new System.Drawing.Size(269, 39);
+            this.txtSobrenome.TabIndex = 5;
+            // 
+            // txtNome
+            // 
+            this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNome.Font = new System.Drawing.Font("Malgun Gothic Semilight", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNome.Location = new System.Drawing.Point(6, 47);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(269, 39);
+            this.txtNome.TabIndex = 4;
             // 
             // btnEntrar
             // 

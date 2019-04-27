@@ -30,13 +30,14 @@ namespace Dados
                 using (SqlCommand cmd = _conexao.Open().CreateCommand())
                 {   
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = "INSERT INTO PRODUTO (NOME, DESCRICAO, OBSERVACAO, LIMITEDIAS, USUARIOCRIACAOID) " +
-                        " VALUES(@NOME, @DESCRICAO, @OBSERVACAO, @LIMITEDIAS, @USUARIOCRIACAOID)";
+                    cmd.CommandText = "INSERT INTO PRODUTO (NOME, DESCRICAO, OBSERVACAO, LIMITEDIASEMPRESTIMO, VALOR, USUARIOCRIACAOID) " +
+                        " VALUES(@NOME, @DESCRICAO, @OBSERVACAO, @LIMITEDIAS, @VALOR, @USUARIOCRIACAOID)";
                     cmd.Parameters.AddWithValue("@NOME", Model.Nome);
                     cmd.Parameters.AddWithValue("@DESCRICAO", Model.Descricao);
                     cmd.Parameters.AddWithValue("@OBSERVACAO", Model.Observacao);
                     cmd.Parameters.AddWithValue("@LIMITEDIAS", Model.LimiteDiasEmprestimo);
                     cmd.Parameters.AddWithValue("@USUARIOCRIACAOID", Model.UsuarioCriacao.Id);
+                    cmd.Parameters.AddWithValue("@VALOR", Model.Valor);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -76,7 +77,7 @@ namespace Dados
                         " P.DESCRICAO, " +
                         " P.OBSERVACAO, " +
                         " P.CADASTRO, " +
-                        " P.LIMITEDIAS, " +
+                        " P.LIMITEDIASEMPRESTIMO, " +
                         " P.[STATUS]," +
                         " P.SITUACAO," +
                         " PC.ID AS 'USUARIOCRIACAO_ID'," +

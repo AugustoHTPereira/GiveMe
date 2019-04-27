@@ -20,9 +20,10 @@ namespace Modelo
         public string Observacao { get; set; }
         public DateTime DataCadastro { get; set; }
         public int LimiteDiasEmprestimo { get; set; }
+        public decimal Valor { get; set; }
         public Usuario UsuarioCriacao { get; set; }
         public Usuario UsuarioLocatario { get; set; }
-        public status Status { get; set; }
+        public int Status { get; set; }
         public Imagem Foto { get; set; }
         public bool Situacao { get; set; }
     }

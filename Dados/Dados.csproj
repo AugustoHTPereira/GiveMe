@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Conexao\ConexaoSqlServer.cs" />
     <Compile Include="Conexao\Interface\IConexao.cs" />
+    <Compile Include="D_Historico.cs" />
     <Compile Include="D_Pessoa.cs" />
     <Compile Include="D_Produto.cs" />
     <Compile Include="D_Usuario.cs" />
