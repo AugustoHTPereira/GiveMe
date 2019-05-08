@@ -18,7 +18,11 @@ namespace GiveMe
         {
             _Usuario = usuario;
             InitializeComponent();
-            lblVersao.Text = "V 1.00.0.0";
+            lblVersao.Text = "V 0.01";
+        }
+        public frm_Master()
+        {
+            InitializeComponent();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -41,6 +45,7 @@ namespace GiveMe
 
         private void ShowInMaster(Form From, Panel To)
         {
+            
             //EXIBE NO PANEL DE DESTINO O FORMULÁRIO DESEJADO
             if (To.Controls.Count > 0)
                 To.Controls.RemoveAt(0);
@@ -50,6 +55,7 @@ namespace GiveMe
             To.Tag = From;
             From.Show();
         }
+
 
         private void btnMeusProdutos_Click(object sender, EventArgs e)
         {

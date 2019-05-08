@@ -14,7 +14,10 @@ namespace Dados.Conexao
         SqlConnection _conexao;
         public ConexaoSqlServer()
         {
-            _conexao = new SqlConnection(@"Server=localhost\SQLEXPRESS; Initial Catalog=EMPRESTEI; Integrated Security=true;");
+            //CONEXAO SQL SOMEE.COM
+            //_conexao = new SqlConnection(@"workstation id=EMPRESTEI.mssql.somee.com;data source=EMPRESTEI.mssql.somee.com;initial catalog=EMPRESTEI;user id=augusto_SQLLogin_1;pwd=321cpsxoyn;");
+            //CONEXAO SQL LOCAL
+            _conexao = new SqlConnection(@"DATA SOURCE=LOCALHOST\SQLEXPRESS;INITIAL CATALOG=EMPRESTEI;INTEGRATED SECURITY=TRUE;");
         }
         public void Close()
         {

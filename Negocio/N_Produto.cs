@@ -21,6 +21,18 @@ namespace Negocio
                     using(D_Produto Produto = new D_Produto(conexao))
                     {
                         Produto.Insert(Model);
+                        Model.Id = Produto.SelectIdentity();
+                    }
+                    using(D_Historico D_Historico = new D_Historico(conexao))
+                    {
+                        Historico historico = new Historico
+                        {
+                            Tabela = "PRODUTO",
+                            RegistroId = Model.Id,
+                            TipoId = 1,
+                            UsuarioId = Model.UsuarioCriacaoId
+                        };
+                        D_Historico.Insert(historico);
                     }
                 }
             }

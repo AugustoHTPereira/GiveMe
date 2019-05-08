@@ -34,27 +34,33 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabProdutos = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.gvProdutos = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtDescricao = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtValor = new System.Windows.Forms.TextBox();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.txtUsuarioLocador = new System.Windows.Forms.TextBox();
+            this.txtUsuarioCriacao = new System.Windows.Forms.TextBox();
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtLimiteEmprestimo = new System.Windows.Forms.TextBox();
+            this.txtDataCadastro = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtObs = new System.Windows.Forms.TextBox();
-            this.txtDataCadastro = new System.Windows.Forms.TextBox();
-            this.txtLimiteEmprestimo = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.TextBox();
-            this.txtUsuarioCriacao = new System.Windows.Forms.TextBox();
-            this.txtUsuarioLocador = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.gvProdutos = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtDescricao = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabProdutos.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvProdutos)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -122,9 +128,27 @@
             this.tabPage1.Text = "Meus Produtos";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // gvProdutos
+            // 
+            this.gvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvProdutos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvProdutos.Location = new System.Drawing.Point(3, 3);
+            this.gvProdutos.Name = "gvProdutos";
+            this.gvProdutos.RowHeadersWidth = 51;
+            this.gvProdutos.RowTemplate.Height = 24;
+            this.gvProdutos.Size = new System.Drawing.Size(786, 297);
+            this.gvProdutos.TabIndex = 0;
+            this.gvProdutos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GvProdutos_CellMouseDoubleClick);
+            // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.txtValor);
+            this.tabPage2.Controls.Add(this.btnSalvar);
             this.tabPage2.Controls.Add(this.txtUsuarioLocador);
             this.tabPage2.Controls.Add(this.txtUsuarioCriacao);
             this.tabPage2.Controls.Add(this.txtStatus);
@@ -145,38 +169,80 @@
             this.tabPage2.Text = "Novo";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // txtNome
+            // label5
             // 
-            this.txtNome.Location = new System.Drawing.Point(8, 25);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(357, 22);
-            this.txtNome.TabIndex = 0;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(219, 253);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(102, 17);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Valor estimado";
             // 
-            // label1
+            // txtValor
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nome";
+            this.txtValor.Location = new System.Drawing.Point(222, 273);
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(143, 22);
+            this.txtValor.TabIndex = 13;
             // 
-            // label2
+            // btnSalvar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 56);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Descricao";
+            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(126)))), ((int)(((byte)(168)))));
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnSalvar.ForeColor = System.Drawing.Color.White;
+            this.btnSalvar.Location = new System.Drawing.Point(685, 252);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(99, 43);
+            this.btnSalvar.TabIndex = 12;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
-            // txtDescricao
+            // txtUsuarioLocador
             // 
-            this.txtDescricao.Location = new System.Drawing.Point(8, 76);
-            this.txtDescricao.Multiline = true;
-            this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(357, 93);
-            this.txtDescricao.TabIndex = 2;
+            this.txtUsuarioLocador.Location = new System.Drawing.Point(371, 187);
+            this.txtUsuarioLocador.Name = "txtUsuarioLocador";
+            this.txtUsuarioLocador.Size = new System.Drawing.Size(216, 22);
+            this.txtUsuarioLocador.TabIndex = 11;
+            // 
+            // txtUsuarioCriacao
+            // 
+            this.txtUsuarioCriacao.Location = new System.Drawing.Point(371, 130);
+            this.txtUsuarioCriacao.Name = "txtUsuarioCriacao";
+            this.txtUsuarioCriacao.Size = new System.Drawing.Size(216, 22);
+            this.txtUsuarioCriacao.TabIndex = 10;
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Location = new System.Drawing.Point(371, 76);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(216, 22);
+            this.txtStatus.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 253);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(205, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Limite de dias para empréstimo";
+            // 
+            // txtLimiteEmprestimo
+            // 
+            this.txtLimiteEmprestimo.Location = new System.Drawing.Point(9, 273);
+            this.txtLimiteEmprestimo.Name = "txtLimiteEmprestimo";
+            this.txtLimiteEmprestimo.Size = new System.Drawing.Size(207, 22);
+            this.txtLimiteEmprestimo.TabIndex = 7;
+            // 
+            // txtDataCadastro
+            // 
+            this.txtDataCadastro.Location = new System.Drawing.Point(371, 25);
+            this.txtDataCadastro.Name = "txtDataCadastro";
+            this.txtDataCadastro.Size = new System.Drawing.Size(216, 22);
+            this.txtDataCadastro.TabIndex = 6;
             // 
             // label3
             // 
@@ -195,72 +261,74 @@
             this.txtObs.Size = new System.Drawing.Size(356, 44);
             this.txtObs.TabIndex = 4;
             // 
-            // txtDataCadastro
+            // label2
             // 
-            this.txtDataCadastro.Location = new System.Drawing.Point(371, 25);
-            this.txtDataCadastro.Name = "txtDataCadastro";
-            this.txtDataCadastro.Size = new System.Drawing.Size(216, 22);
-            this.txtDataCadastro.TabIndex = 6;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 17);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Descricao";
             // 
-            // txtLimiteEmprestimo
+            // txtDescricao
             // 
-            this.txtLimiteEmprestimo.Location = new System.Drawing.Point(9, 273);
-            this.txtLimiteEmprestimo.Name = "txtLimiteEmprestimo";
-            this.txtLimiteEmprestimo.Size = new System.Drawing.Size(207, 22);
-            this.txtLimiteEmprestimo.TabIndex = 7;
+            this.txtDescricao.Location = new System.Drawing.Point(8, 76);
+            this.txtDescricao.Multiline = true;
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(357, 93);
+            this.txtDescricao.TabIndex = 2;
             // 
-            // label4
+            // label1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 253);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(205, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Limite de dias para empréstimo";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Nome";
             // 
-            // txtStatus
+            // txtNome
             // 
-            this.txtStatus.Location = new System.Drawing.Point(371, 53);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(216, 22);
-            this.txtStatus.TabIndex = 9;
+            this.txtNome.Location = new System.Drawing.Point(8, 25);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(357, 22);
+            this.txtNome.TabIndex = 0;
             // 
-            // txtUsuarioCriacao
+            // label6
             // 
-            this.txtUsuarioCriacao.Location = new System.Drawing.Point(371, 81);
-            this.txtUsuarioCriacao.Name = "txtUsuarioCriacao";
-            this.txtUsuarioCriacao.Size = new System.Drawing.Size(216, 22);
-            this.txtUsuarioCriacao.TabIndex = 10;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(368, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 17);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Cadastro:";
             // 
-            // txtUsuarioLocador
+            // label7
             // 
-            this.txtUsuarioLocador.Location = new System.Drawing.Point(371, 109);
-            this.txtUsuarioLocador.Name = "txtUsuarioLocador";
-            this.txtUsuarioLocador.Size = new System.Drawing.Size(216, 22);
-            this.txtUsuarioLocador.TabIndex = 11;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(368, 56);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(48, 17);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Status";
             // 
-            // button1
+            // label8
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(126)))), ((int)(((byte)(168)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(685, 252);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 43);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Criar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(368, 110);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 17);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Dono";
             // 
-            // gvProdutos
+            // label9
             // 
-            this.gvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvProdutos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvProdutos.Location = new System.Drawing.Point(3, 3);
-            this.gvProdutos.Name = "gvProdutos";
-            this.gvProdutos.RowTemplate.Height = 24;
-            this.gvProdutos.Size = new System.Drawing.Size(786, 297);
-            this.gvProdutos.TabIndex = 0;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(368, 167);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 17);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Locatário";
             // 
             // frmProdutos
             // 
@@ -279,9 +347,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabProdutos.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvProdutos)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvProdutos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -306,8 +374,14 @@
         private System.Windows.Forms.TextBox txtLimiteEmprestimo;
         private System.Windows.Forms.TextBox txtUsuarioCriacao;
         private System.Windows.Forms.TextBox txtStatus;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.TextBox txtUsuarioLocador;
         private System.Windows.Forms.DataGridView gvProdutos;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtValor;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }

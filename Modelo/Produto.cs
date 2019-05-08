@@ -21,6 +21,7 @@ namespace Modelo
         public DateTime DataCadastro { get; set; }
         public int LimiteDiasEmprestimo { get; set; }
         public decimal Valor { get; set; }
+        public int UsuarioCriacaoId { get; set; }
         public Usuario UsuarioCriacao { get; set; }
         public Usuario UsuarioLocatario { get; set; }
         public int Status { get; set; }

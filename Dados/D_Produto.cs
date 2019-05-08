@@ -28,7 +28,7 @@ namespace Dados
             try
             {
                 using (SqlCommand cmd = _conexao.Open().CreateCommand())
-                {   
+                {
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = "INSERT INTO PRODUTO (NOME, DESCRICAO, OBSERVACAO, LIMITEDIASEMPRESTIMO, VALOR, USUARIOCRIACAOID) " +
                         " VALUES(@NOME, @DESCRICAO, @OBSERVACAO, @LIMITEDIAS, @VALOR, @USUARIOCRIACAOID)";
@@ -36,7 +36,7 @@ namespace Dados
                     cmd.Parameters.AddWithValue("@DESCRICAO", Model.Descricao);
                     cmd.Parameters.AddWithValue("@OBSERVACAO", Model.Observacao);
                     cmd.Parameters.AddWithValue("@LIMITEDIAS", Model.LimiteDiasEmprestimo);
-                    cmd.Parameters.AddWithValue("@USUARIOCRIACAOID", Model.UsuarioCriacao.Id);
+                    cmd.Parameters.AddWithValue("@USUARIOCRIACAOID", Model.UsuarioCriacaoId);
                     cmd.Parameters.AddWithValue("@VALOR", Model.Valor);
                     cmd.ExecuteNonQuery();
                 }
@@ -52,7 +52,21 @@ namespace Dados
         }
         public int SelectIdentity()
         {
-            throw new NotImplementedException();
+            try
+            {
+                int Id;
+                using (SqlCommand cmd = _conexao.Open().CreateCommand())
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = "SELECT TOP 1 ID FROM PRODUTO ORDER BY ID DESC";
+                    Id = (int)cmd.ExecuteScalar();
+                }
+                return Id;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Usuario: " + ex.Message);
+            }
         }
         public Produto SelectOneLine(int Id)
         {
@@ -70,62 +84,65 @@ namespace Dados
                 using (SqlCommand cmd = _conexao.Open().CreateCommand())
                 {
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = 
+                    cmd.CommandText =
                         " SELECT " +
                         " P.ID, " +
                         " P.NOME, " +
                         " P.DESCRICAO, " +
                         " P.OBSERVACAO, " +
-                        " P.CADASTRO, " +
+                        " P.DATACADASTRO, " +
                         " P.LIMITEDIASEMPRESTIMO, " +
                         " P.[STATUS]," +
                         " P.SITUACAO," +
+                        " P.VALOR," +
                         " PC.ID AS 'USUARIOCRIACAO_ID'," +
                         " PC.NOME AS 'USUARIOCRIACAO_NOME'," +
-                        " PL.ID AS 'USUARIOLOCATARIO_ID'," +
-                        " PL.NOME AS 'USUARIOLOCATARIO_NOME'" +
+                        " PL.ID AS 'USUARIOLOCADOR_ID'," +
+                        " PL.NOME AS 'USUARIOLOCADOR_NOME'" +
                         " FROM PRODUTO P" +
                         " INNER JOIN USUARIO UC ON UC.ID = P.USUARIOCRIACAOID" +
                         " INNER JOIN PESSOA PC ON PC.ID = UC.PESSOAID" +
-                        " LEFT JOIN USUARIO UL ON UL.ID = P.USUARIOLOCATARIOID" +
+                        " LEFT JOIN USUARIO UL ON UL.ID = P.USUARIOLOCADORID" +
                         " LEFT JOIN PESSOA PL ON PL.ID = UL.PESSOAID" +
                         " WHERE UC.ID = @USUARIOCRIACAOID";
 
                     cmd.Parameters.AddWithValue("@USUARIOCRIACAOID", CreatorId);
-                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
                             Produtos = new List<Produto>();
                             while (reader.Read())
                             {
-                                Produto Produto = new Produto
+                                Produto Produto = new Produto();
+
+                                Produto.Id = (int)reader["ID"];
+                                Produto.Nome = (string)reader["NOME"];
+                                Produto.Descricao = (string)reader["DESCRICAO"];
+                                Produto.Observacao = (string)reader["OBSERVACAO"];
+                                Produto.DataCadastro = (DateTime)reader["DATACADASTRO"];
+                                Produto.LimiteDiasEmprestimo = (int)reader["LIMITEDIASEMPRESTIMO"];
+                                Produto.Valor = (decimal)reader["VALOR"];
+                                Produto.Status = (int)reader["STATUS"];
+                                Produto.Situacao = (bool)reader["SITUACAO"];
+                                Produto.UsuarioCriacaoId = (int)reader["USUARIOCRIACAO_ID"];
+                                Produto.UsuarioCriacao = new Usuario
                                 {
-                                    Id = (int)reader["ID"],
-                                    Nome = (string)reader["NOME"],
-                                    Descricao = (string)reader["DESCRICAO"],
-                                    Observacao = (string)reader["OBSERVACAO"],
-                                    DataCadastro = (DateTime)reader["CADASTRO"],
-                                    LimiteDiasEmprestimo = (int)reader["LIMITEDIAS"],
-                                    Status = (int)reader["STATUS"],
-                                    Situacao = (bool)reader["SITUACAO"],
-                                    UsuarioCriacao = new Usuario
+                                    Id = (int)reader["USUARIOCRIACAO_ID"],
+                                    Pessoa = new Pessoa
                                     {
-                                        Id = (int)reader["USUARIOCRIACAO_ID"],
-                                        Pessoa = new Pessoa
-                                        {
-                                            Nome = (string)reader["USUARIOCRIACAO_NOME"]
-                                        }
-                                    },
-                                    UsuarioLocatario = new Usuario
-                                    {
-                                        Id = (int)reader["USUARIOLOCATARIO_ID"],
-                                        Pessoa = new Pessoa
-                                        {
-                                            Nome = (string)reader["USUARIOLOCATARIO_NOME"]
-                                        }
+                                        Nome = (string)reader["USUARIOCRIACAO_NOME"]
                                     }
                                 };
+                                if (reader["USUARIOLOCADOR_ID"] != DBNull.Value)
+                                    Produto.UsuarioLocatario = new Usuario
+                                    {
+                                        Id = (int)reader["USUARIOLOCADOR_ID"],
+                                        Pessoa = new Pessoa
+                                        {
+                                            Nome = (string)reader["USUARIOLOCADOR_NOME"]
+                                        }
+                                    };
                                 Produtos.Add(Produto);
                             }
                         }
@@ -161,7 +178,7 @@ namespace Dados
         public Task UpdateAsync(Produto Model)
         {
             throw new NotImplementedException();
-        } 
+        }
         #endregion
     }
 }

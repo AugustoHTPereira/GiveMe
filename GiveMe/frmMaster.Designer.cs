@@ -30,24 +30,20 @@
         {
             this.pnlEsquerda = new System.Windows.Forms.Panel();
             this.lblVersao = new System.Windows.Forms.Label();
+            this.btnMeusProdutos = new System.Windows.Forms.Button();
+            this.btnMyAccount = new System.Windows.Forms.Button();
             this.pnlTopo = new System.Windows.Forms.Panel();
-            this.pnlConteudo = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.gifProcesso = new System.Windows.Forms.PictureBox();
             this.btnResizeMenu = new System.Windows.Forms.PictureBox();
             this.btnMinimize = new System.Windows.Forms.PictureBox();
             this.btnExit = new System.Windows.Forms.PictureBox();
-            this.btnMeusProdutos = new System.Windows.Forms.Button();
-            this.btnMyAccount = new System.Windows.Forms.Button();
-            this.lblProcesso = new System.Windows.Forms.Label();
+            this.pnlConteudo = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pnlEsquerda.SuspendLayout();
             this.pnlTopo.SuspendLayout();
-            this.pnlConteudo.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gifProcesso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnResizeMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).BeginInit();
+            this.pnlConteudo.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlEsquerda
@@ -73,6 +69,43 @@
             this.lblVersao.TabIndex = 2;
             this.lblVersao.Text = "Versão";
             // 
+            // btnMeusProdutos
+            // 
+            this.btnMeusProdutos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMeusProdutos.FlatAppearance.BorderSize = 0;
+            this.btnMeusProdutos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMeusProdutos.Font = new System.Drawing.Font("Malgun Gothic Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMeusProdutos.ForeColor = System.Drawing.Color.White;
+            this.btnMeusProdutos.Image = global::GiveMe.Properties.Resources.icons8_box_50;
+            this.btnMeusProdutos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMeusProdutos.Location = new System.Drawing.Point(3, 229);
+            this.btnMeusProdutos.Margin = new System.Windows.Forms.Padding(0);
+            this.btnMeusProdutos.Name = "btnMeusProdutos";
+            this.btnMeusProdutos.Size = new System.Drawing.Size(300, 87);
+            this.btnMeusProdutos.TabIndex = 1;
+            this.btnMeusProdutos.Text = "   MEUS PRODUTOS";
+            this.btnMeusProdutos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnMeusProdutos.UseVisualStyleBackColor = true;
+            this.btnMeusProdutos.Click += new System.EventHandler(this.btnMeusProdutos_Click);
+            // 
+            // btnMyAccount
+            // 
+            this.btnMyAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMyAccount.FlatAppearance.BorderSize = 0;
+            this.btnMyAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMyAccount.Font = new System.Drawing.Font("Malgun Gothic Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMyAccount.ForeColor = System.Drawing.Color.White;
+            this.btnMyAccount.Image = global::GiveMe.Properties.Resources.icons8_user_50;
+            this.btnMyAccount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMyAccount.Location = new System.Drawing.Point(3, 123);
+            this.btnMyAccount.Margin = new System.Windows.Forms.Padding(0);
+            this.btnMyAccount.Name = "btnMyAccount";
+            this.btnMyAccount.Size = new System.Drawing.Size(300, 87);
+            this.btnMyAccount.TabIndex = 0;
+            this.btnMyAccount.Text = "   MINHA CONTA";
+            this.btnMyAccount.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnMyAccount.UseVisualStyleBackColor = true;
+            // 
             // pnlTopo
             // 
             this.pnlTopo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(126)))), ((int)(((byte)(168)))));
@@ -84,38 +117,6 @@
             this.pnlTopo.Name = "pnlTopo";
             this.pnlTopo.Size = new System.Drawing.Size(1032, 50);
             this.pnlTopo.TabIndex = 0;
-            // 
-            // pnlConteudo
-            // 
-            this.pnlConteudo.BackColor = System.Drawing.Color.White;
-            this.pnlConteudo.Controls.Add(this.panel1);
-            this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlConteudo.Location = new System.Drawing.Point(300, 50);
-            this.pnlConteudo.Name = "pnlConteudo";
-            this.pnlConteudo.Size = new System.Drawing.Size(1032, 623);
-            this.pnlConteudo.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.SteelBlue;
-            this.panel1.Controls.Add(this.lblProcesso);
-            this.panel1.Controls.Add(this.gifProcesso);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 581);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1032, 42);
-            this.panel1.TabIndex = 0;
-            // 
-            // gifProcesso
-            // 
-            this.gifProcesso.Dock = System.Windows.Forms.DockStyle.Left;
-            this.gifProcesso.Image = global::GiveMe.Properties.Resources.loader;
-            this.gifProcesso.Location = new System.Drawing.Point(0, 0);
-            this.gifProcesso.Name = "gifProcesso";
-            this.gifProcesso.Size = new System.Drawing.Size(34, 42);
-            this.gifProcesso.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.gifProcesso.TabIndex = 0;
-            this.gifProcesso.TabStop = false;
             // 
             // btnResizeMenu
             // 
@@ -155,53 +156,24 @@
             this.btnExit.TabStop = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // btnMeusProdutos
+            // pnlConteudo
             // 
-            this.btnMeusProdutos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMeusProdutos.FlatAppearance.BorderSize = 0;
-            this.btnMeusProdutos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMeusProdutos.Font = new System.Drawing.Font("Malgun Gothic Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMeusProdutos.ForeColor = System.Drawing.Color.White;
-            this.btnMeusProdutos.Image = global::GiveMe.Properties.Resources.icons8_box_50;
-            this.btnMeusProdutos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMeusProdutos.Location = new System.Drawing.Point(3, 229);
-            this.btnMeusProdutos.Margin = new System.Windows.Forms.Padding(0);
-            this.btnMeusProdutos.Name = "btnMeusProdutos";
-            this.btnMeusProdutos.Size = new System.Drawing.Size(300, 87);
-            this.btnMeusProdutos.TabIndex = 1;
-            this.btnMeusProdutos.Text = "   MEUS PRODUTOS";
-            this.btnMeusProdutos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnMeusProdutos.UseVisualStyleBackColor = true;
-            this.btnMeusProdutos.Click += new System.EventHandler(this.btnMeusProdutos_Click);
+            this.pnlConteudo.BackColor = System.Drawing.Color.White;
+            this.pnlConteudo.Controls.Add(this.panel1);
+            this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlConteudo.Location = new System.Drawing.Point(300, 50);
+            this.pnlConteudo.Name = "pnlConteudo";
+            this.pnlConteudo.Size = new System.Drawing.Size(1032, 623);
+            this.pnlConteudo.TabIndex = 1;
             // 
-            // btnMyAccount
+            // panel1
             // 
-            this.btnMyAccount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMyAccount.FlatAppearance.BorderSize = 0;
-            this.btnMyAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMyAccount.Font = new System.Drawing.Font("Malgun Gothic Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMyAccount.ForeColor = System.Drawing.Color.White;
-            this.btnMyAccount.Image = global::GiveMe.Properties.Resources.icons8_user_50;
-            this.btnMyAccount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMyAccount.Location = new System.Drawing.Point(3, 123);
-            this.btnMyAccount.Margin = new System.Windows.Forms.Padding(0);
-            this.btnMyAccount.Name = "btnMyAccount";
-            this.btnMyAccount.Size = new System.Drawing.Size(300, 87);
-            this.btnMyAccount.TabIndex = 0;
-            this.btnMyAccount.Text = "   MINHA CONTA";
-            this.btnMyAccount.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnMyAccount.UseVisualStyleBackColor = true;
-            // 
-            // lblProcesso
-            // 
-            this.lblProcesso.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblProcesso.AutoSize = true;
-            this.lblProcesso.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblProcesso.Location = new System.Drawing.Point(40, 16);
-            this.lblProcesso.Name = "lblProcesso";
-            this.lblProcesso.Size = new System.Drawing.Size(53, 17);
-            this.lblProcesso.TabIndex = 3;
-            this.lblProcesso.Text = "Versão";
+            this.panel1.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 581);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1032, 42);
+            this.panel1.TabIndex = 0;
             // 
             // frm_Master
             // 
@@ -219,13 +191,10 @@
             this.pnlEsquerda.ResumeLayout(false);
             this.pnlEsquerda.PerformLayout();
             this.pnlTopo.ResumeLayout(false);
-            this.pnlConteudo.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gifProcesso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnResizeMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).EndInit();
+            this.pnlConteudo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -241,8 +210,6 @@
         private System.Windows.Forms.Button btnMeusProdutos;
         private System.Windows.Forms.PictureBox btnMinimize;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox gifProcesso;
-        private System.Windows.Forms.Label lblProcesso;
     }
 }
 

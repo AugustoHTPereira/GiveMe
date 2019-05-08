@@ -45,7 +45,50 @@ namespace Dados
         }
         public IList<Usuario> SelectAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                IList<Usuario> Usuarios = null;
+                using (SqlCommand cmd = _conexao.Open().CreateCommand())
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = "SELECT U.ID, U.EMAIL, U.[LOGIN], U.SITUACAO, U.CONFIRMACAOEMAIL, P.ID AS 'PESSOAID', P.NOME, P.SOBRENOME, P.NASCIMENTO, P.INSCRICAO, P.SITUACAO AS 'PESSOASITUACAO' FROM USUARIO U INNER JOIN PESSOA P ON P.ID = U.PESSOAID";
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        Usuarios = new List<Usuario>();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                Usuario Usuario = new Usuario
+                                {
+                                    Id = (int)reader["ID"],
+                                    Email = (string)reader["EMAIL"],
+                                    Login = (string)reader["LOGIN"],
+                                    Situacao = (bool)reader["SITUACAO"],
+                                    ConfirmacaoEmail = (bool)reader["CONFIRMACAOEMAIL"],
+                                    PessoaId = (int)reader["PESSOAID"],
+                                    //Senha = "",
+                                    Pessoa = new Pessoa
+                                    {
+                                        Id= (int)reader["PESSOAID"],
+                                        Nome = (string)reader["NOME"],
+                                        Sobrenome = (string)reader["SOBRENOME"],
+                                        Nascimento = (DateTime)reader["NASCIMENTO"],
+                                        Inscricao = (string)reader["INSCRICAO"],
+                                        Situacao = (bool)reader["PESSOASITUACAO"]
+                                    }
+                                };
+                                Usuarios.Add(Usuario);
+                            }
+                        }
+                    }
+                }
+                return Usuarios;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
         public int SelectIdentity()
         {
@@ -79,9 +122,37 @@ namespace Dados
         {
             throw new NotImplementedException();
         }
-        public Task<IList<Usuario>> SelectAllAsync()
+        public async Task<IList<Usuario>> SelectAllAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                IList<Usuario> Usuarios = null;
+                using (SqlCommand cmd = _conexao.Open().CreateCommand())
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = "SELECT U.ID FROM USUARIO";
+                    using(SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        Usuarios = new List<Usuario>();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                Usuario Usuario = new Usuario
+                                {
+                                    Id = (int)reader["ID"]
+                                };
+                                Usuarios.Add(Usuario);
+                            }
+                        }
+                    }
+                }
+                return Usuarios;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         public Task<int> SelectIdentityAsync()
         {

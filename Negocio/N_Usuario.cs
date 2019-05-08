@@ -65,7 +65,12 @@ namespace Negocio
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Busca usuário
+        /// </summary>
+        /// <param name="Usuario"></param>
+        /// <param name="Senha"></param>
+        /// <returns>Usuario</returns>
         public static Usuario Logar(string Usuario, string Senha)
         {
             try
@@ -83,6 +88,26 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+        public static IList<Usuario> GetAll()
+        {
+            try
+            {
+                IList<Usuario> Usuarios = null;
+                using (IConexao conexao = new ConexaoSqlServer())
+                {
+                    using (D_Usuario d_Usuario = new D_Usuario(conexao))
+                    {
+                        Usuarios = d_Usuario.SelectAll();
+                    }
+                }
+                return Usuarios;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
     }

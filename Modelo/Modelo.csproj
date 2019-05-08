@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catch.cs" />
     <Compile Include="Historico.cs" />
     <Compile Include="Imagem.cs" />
     <Compile Include="Pessoa.cs" />
