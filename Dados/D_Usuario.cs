@@ -212,7 +212,7 @@ namespace Dados
                         " U.SITUACAO" +
                         " FROM USUARIO U" +
                         " INNER JOIN PESSOA P ON P.ID = U.PESSOAID" +
-                        " WHERE (U.[LOGIN] = @LOGIN OR U.EMAIL = @LOGIN) AND U.SENHA = @SENHA";
+                        " WHERE (U.[LOGIN] = @LOGIN OR U.EMAIL = @LOGIN) AND U.SENHA = @SENHA AND U.SITUACAO = 1";
                     cmd.Parameters.AddWithValue("@LOGIN", Usuario);
                     cmd.Parameters.AddWithValue("@SENHA", Senha);
                     using (SqlDataReader reader = cmd.ExecuteReader())

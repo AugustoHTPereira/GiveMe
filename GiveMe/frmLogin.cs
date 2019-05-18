@@ -1,19 +1,19 @@
 ﻿using Modelo;
 using Negocio;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.Windows.Forms;
 
 namespace GiveMe
 {
     public partial class frmLogin : Form
     {
+        const string _BaseUrl = "https://localhost:44384/api/";
+
         Usuario _Usuario;
         public frmLogin()
         {
@@ -29,38 +29,19 @@ namespace GiveMe
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            if(txtLogin.Text == string.Empty || txtSenha.Text == string.Empty)
+            if (txtLogin.Text == string.Empty || txtSenha.Text == string.Empty)
             {
                 lblErro.Text = "Preencha os campos de usuário e senha";
                 return;
             }
 
-            try
+            //string Token = string.Empty;
+            object TokenData = null;
+            if (GetToken(out string Token))
             {
-                _Usuario = N_Usuario.Logar(txtLogin.Text, txtSenha.Text);
+                TokenData = JsonConvert.DeserializeObject(Token);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ops !");
-                return;
-            }
-            // VALIDA O LOGIN DO USUÁRIO
-            if(_Usuario == null)
-            {
-                MessageBox.Show("Não encontramos nenhum usuário com essas credenciais. Verifique seus dados ou se não for registrado ainda, registre-se!", "Ops !");
-                return;
-            }
-            if (_Usuario.ConfirmacaoEmail.Equals(false))
-            {
-                MessageBox.Show("Você ainda não confirmou seu e-mail. Confirme-o antes de realizar o login.", "Ops !");
-                return;
-            }
-            if (_Usuario.Situacao.Equals(false))
-            {
-                MessageBox.Show("Seu usuário foi desativado. Contate o suporte técnico.", "Ops !");
-                return;
-            }
-            // FIM VALIDA O LOGIN DO USUÁRIO
+
             frm_Master master = new frm_Master(_Usuario);
             master.Show();
             this.Hide();
@@ -70,6 +51,35 @@ namespace GiveMe
         {
             RegistrarUsuario form = new RegistrarUsuario();
             form.Show();
+        }
+
+        private bool GetToken(out string Token)
+        {
+            HttpClient Client = new HttpClient();
+            // Endereço para requisição
+            Client.BaseAddress = new Uri(_BaseUrl + "Token");
+            Client.DefaultRequestHeaders.Accept.Clear();
+            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            var Pairs = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>( "Login", txtLogin.Text),
+                new KeyValuePair<string, string> ( "Senha", txtSenha.Text)
+            };
+
+            var Content = new FormUrlEncodedContent(Pairs);
+
+            HttpResponseMessage ResponseMessage = Client.PostAsync(Client.BaseAddress, Content).Result;
+            Token = string.Empty;
+
+            if (!ResponseMessage.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                MessageBox.Show("Verifique seus dados", "Acesso negado");
+                return false;
+            }
+
+            Token = ResponseMessage.Content.ReadAsStringAsync().Result;
+            return true;
         }
     }
 }
