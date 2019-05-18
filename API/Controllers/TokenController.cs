@@ -72,8 +72,8 @@ namespace API.Controllers
             // insert into database async
             Task task = new Task(() => InsertToken(new JsonWebToken
             {
-                Token = strToken,
-                UsuarioId = User.Id
+                acesstoken = strToken,
+                userid = User.Id
 
             }));
             task.Wait(1000);
@@ -93,7 +93,8 @@ namespace API.Controllers
                 created = issuedAt,
                 expire = expires,
                 message = "Ok",
-                mailconfirm = User.ConfirmacaoEmail
+                mailconfirm = User.ConfirmacaoEmail,
+                user = User
             };
         }
         

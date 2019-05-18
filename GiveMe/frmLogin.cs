@@ -36,15 +36,14 @@ namespace GiveMe
             }
 
             //string Token = string.Empty;
-            object TokenData = null;
             if (GetToken(out string Token))
             {
-                TokenData = JsonConvert.DeserializeObject(Token);
-            }
+                JsonWebToken TokenData = JsonConvert.DeserializeObject<JsonWebToken>(Token);
 
-            frm_Master master = new frm_Master(_Usuario);
-            master.Show();
-            this.Hide();
+                frm_Master master = new frm_Master(_Usuario);
+                master.Show();
+                this.Hide();
+            }
         }
 
         private void lkbRegistrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

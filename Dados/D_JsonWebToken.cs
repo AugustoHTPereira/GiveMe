@@ -35,8 +35,8 @@ namespace Dados
                 {
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = "INSERT INTO JSONWEBTOKEN (TOKEN, USUARIOID) VALUES (@TOKEN, @USUARIOID);";
-                    cmd.Parameters.AddWithValue("@TOKEN", Model.Token);
-                    cmd.Parameters.AddWithValue("@USUARIOID", Model.UsuarioId);
+                    cmd.Parameters.AddWithValue("@TOKEN", Model.acesstoken);
+                    cmd.Parameters.AddWithValue("@USUARIOID", Model.userid);
                     await cmd.ExecuteNonQueryAsync();
                 }
             }

@@ -70,7 +70,7 @@ namespace Dados
                                     //Senha = "",
                                     Pessoa = new Pessoa
                                     {
-                                        Id= (int)reader["PESSOAID"],
+                                        Id = (int)reader["PESSOAID"],
                                         Nome = (string)reader["NOME"],
                                         Sobrenome = (string)reader["SOBRENOME"],
                                         Nascimento = (DateTime)reader["NASCIMENTO"],
@@ -131,7 +131,7 @@ namespace Dados
                 {
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = "SELECT U.ID FROM USUARIO";
-                    using(SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
                         Usuarios = new List<Usuario>();
                         if (reader.HasRows)
@@ -165,7 +165,7 @@ namespace Dados
         public Task UpdateAsync(Usuario Model)
         {
             throw new NotImplementedException();
-        } 
+        }
         #endregion
 
         #region OTHERS
@@ -200,8 +200,9 @@ namespace Dados
                 using (SqlCommand cmd = _conexao.Open().CreateCommand())
                 {
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = 
+                    cmd.CommandText =
                         "SELECT " +
+                        " P.ID AS 'PESSOAID'," +
                         " P.NOME," +
                         " P.SOBRENOME," +
                         " P.INSCRICAO," +
@@ -224,15 +225,17 @@ namespace Dados
                             {
                                 usuario.Pessoa = new Pessoa
                                 {
-                                    Nome                    = (string)reader["NOME"],
-                                    Sobrenome               = (string)reader["SOBRENOME"],
-                                    Inscricao               = (string)reader["INSCRICAO"],
-                                    Nascimento              = (DateTime)reader["NASCIMENTO"],
+                                    Id = (int)reader["PESSOAID"],
+                                    Nome = (string)reader["NOME"],
+                                    Sobrenome = (string)reader["SOBRENOME"],
+                                    Inscricao = (string)reader["INSCRICAO"],
+                                    Nascimento = (DateTime)reader["NASCIMENTO"],
                                 };
-                                usuario.Id                  = (int)reader["USUARIOID"];
-                                usuario.Email               = (string)reader["EMAIL"];
-                                usuario.ConfirmacaoEmail    = (bool)reader["CONFIRMACAOEMAIL"];
-                                usuario.Situacao            = (bool)reader["SITUACAO"];
+                                usuario.Id = (int)reader["USUARIOID"];
+                                usuario.Email = (string)reader["EMAIL"];
+                                usuario.ConfirmacaoEmail = (bool)reader["CONFIRMACAOEMAIL"];
+                                usuario.Situacao = (bool)reader["SITUACAO"];
+                                usuario.PessoaId = (int)reader["PESSOAID"];
                             }
                         }
                     }
