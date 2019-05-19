@@ -35,10 +35,11 @@ namespace GiveMe
                 return;
             }
 
-            //string Token = string.Empty;
             if (GetToken(out string Token))
             {
                 JsonWebToken TokenData = JsonConvert.DeserializeObject<JsonWebToken>(Token);
+                _Usuario = TokenData.user;
+                _Usuario.Token = TokenData.acesstoken;
 
                 frm_Master master = new frm_Master(_Usuario);
                 master.Show();
@@ -62,8 +63,8 @@ namespace GiveMe
 
             var Pairs = new List<KeyValuePair<string, string>>
             {
-                new KeyValuePair<string, string>( "Login", txtLogin.Text),
-                new KeyValuePair<string, string> ( "Senha", txtSenha.Text)
+                new KeyValuePair<string, string>("Login", txtLogin.Text),
+                new KeyValuePair<string, string> ("Senha", txtSenha.Text)
             };
 
             var Content = new FormUrlEncodedContent(Pairs);

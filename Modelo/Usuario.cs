@@ -16,5 +16,6 @@ namespace Modelo
         public Pessoa Pessoa { get; set; }
         public bool Situacao { get; set; }
         public bool ConfirmacaoEmail { get; set; }
+        public string Token { get; set; }
     }
 }

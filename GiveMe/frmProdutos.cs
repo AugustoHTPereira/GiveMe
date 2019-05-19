@@ -1,14 +1,19 @@
 ﻿using Modelo;
 using Negocio;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 namespace GiveMe
 {
     public partial class frmProdutos : Form
     {
+        const string _BaseURL = "https://localhost:44384/api/";
+        
         Usuario _Usuario;
         IList<Produto> _Produtos;
         public frmProdutos(Usuario Usuario)
@@ -22,11 +27,26 @@ namespace GiveMe
         {
             try
             {
-                _Produtos = N_Produto.SelectAllByCriator(_Usuario.Id);
+
+                var request = (HttpWebRequest)WebRequest.Create(_BaseURL + "Produto/?usuarioid=" + _Usuario.Id);
+                request.Method = "Get";
+                request.Headers["Authorization"] = _Usuario.Token;
+                request.ContentType = "application/json";
+                var response = (HttpWebResponse)request.GetResponse();
+                if(response.StatusCode == HttpStatusCode.OK)
+                {
+                    using (Stream responseStream = response.GetResponseStream())
+                    {
+                        StreamReader reader = new StreamReader(responseStream, System.Text.Encoding.UTF8);
+                        string result = reader.ReadToEnd();
+
+                        _Produtos = JsonConvert.DeserializeObject<List<Produto>>(result);
+                    }
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ops !");
+                MessageBox.Show("Token request: " + ex.Message, "Ops !");
                 return;
             }
 
@@ -52,14 +72,34 @@ namespace GiveMe
         }
         private void GvProdutos_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            // le a linha que foi clicada
             var row = this.gvProdutos.Rows[gvProdutos.SelectedCells[0].RowIndex];
+
+            //passa os valores para os respectivos textboxs
             txtNome.Text = row.Cells[1].Value.ToString();
             txtDescricao.Text = row.Cells[2].Value.ToString();
             txtObs.Text = row.Cells[3].Value.ToString();
             txtDataCadastro.Text = row.Cells[4].Value.ToString();
             txtStatus.Text = row.Cells[5].Value.ToString();
-            txtValor.Text = row.Cells[6].Value.ToString();
-            txtLimiteEmprestimo.Text = row.Cells[7].Value.ToString();
+            txtValor.Text = row.Cells[7].Value.ToString();
+            txtLimiteEmprestimo.Text = row.Cells[8].Value.ToString();
+            txtUsuarioCriacao.Text = row.Cells[9].Value.ToString();
+            txtUsuarioLocador.Text = row.Cells[10].Value.ToString();
+
+            //desabilita o formulario
+            txtNome.ReadOnly = true;
+            txtDescricao.ReadOnly = true;
+            txtObs.ReadOnly = true;
+            txtDataCadastro.ReadOnly = true;
+            txtStatus.ReadOnly = true;
+            txtValor.ReadOnly = true;
+            txtLimiteEmprestimo.ReadOnly = true;
+            txtUsuarioCriacao.ReadOnly = true;
+            txtUsuarioLocador.ReadOnly = true;
+
+            //troca a tab
+            tabPage2.Text = "Datalhes " + txtNome.Text;
+            tabProdutos.SelectedTab = tabPage2;
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -97,6 +137,7 @@ namespace GiveMe
                 tabPage1.Focus();
             ClimbForm();
         }
+
         void ClimbForm()
         {
             txtNome.Text = string.Empty;
@@ -105,7 +146,5 @@ namespace GiveMe
             txtLimiteEmprestimo.Text = string.Empty;
             txtValor.Text = string.Empty;
         }
-
-        
     }
 }
