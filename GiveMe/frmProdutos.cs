@@ -13,7 +13,7 @@ namespace GiveMe
     public partial class frmProdutos : Form
     {
         const string _BaseURL = "https://localhost:44384/api/";
-        
+
         Usuario _Usuario;
         IList<Produto> _Produtos;
         public frmProdutos(Usuario Usuario)
@@ -21,19 +21,19 @@ namespace GiveMe
             InitializeComponent();
             _Usuario = Usuario;
             CarregaProdutos();
+            btnPegar.Visible = false;
         }
 
         void CarregaProdutos()
         {
             try
             {
-
                 var request = (HttpWebRequest)WebRequest.Create(_BaseURL + "Produto/?usuarioid=" + _Usuario.Id);
                 request.Method = "Get";
                 request.Headers["Authorization"] = _Usuario.Token;
                 request.ContentType = "application/json";
                 var response = (HttpWebResponse)request.GetResponse();
-                if(response.StatusCode == HttpStatusCode.OK)
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
                     using (Stream responseStream = response.GetResponseStream())
                     {
@@ -76,6 +76,7 @@ namespace GiveMe
             var row = this.gvProdutos.Rows[gvProdutos.SelectedCells[0].RowIndex];
 
             //passa os valores para os respectivos textboxs
+            txtId.Text = row.Cells[0].Value.ToString();
             txtNome.Text = row.Cells[1].Value.ToString();
             txtDescricao.Text = row.Cells[2].Value.ToString();
             txtObs.Text = row.Cells[3].Value.ToString();
@@ -100,6 +101,12 @@ namespace GiveMe
             //troca a tab
             tabPage2.Text = "Datalhes " + txtNome.Text;
             tabProdutos.SelectedTab = tabPage2;
+
+            //se o usuario logado for diferente do dono do produto
+            if (txtUsuarioCriacao.Text != _Usuario.Pessoa.Nome)
+            {
+                btnPegar.Visible = true;
+            }
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -145,6 +152,39 @@ namespace GiveMe
             txtObs.Text = string.Empty;
             txtLimiteEmprestimo.Text = string.Empty;
             txtValor.Text = string.Empty;
+            txtDataCadastro.Text = string.Empty;
+            txtStatus.Text = string.Empty;
+            txtValor.Text = string.Empty;
+            txtLimiteEmprestimo.Text = string.Empty;
+            txtUsuarioCriacao.Text = string.Empty;
+            txtUsuarioLocador.Text = string.Empty;
+        }
+
+        private void BtnPegar_Click(object sender, EventArgs e)
+        {
+            Produto produto = new Produto
+            {
+                Id = int.Parse(txtId.Text),
+                UsuarioLocatario = new Usuario
+                {
+                    Id = _Usuario.Id
+                }
+            };
+            N_Produto.Give(produto, new Historico { RegistroId = produto.Id, Tabela = "Produto", TipoId = 2, UsuarioId = _Usuario.Id });
+        }
+
+        private void BtnNovo_Click(object sender, EventArgs e)
+        {
+            ClimbForm();
+            txtNome.ReadOnly = false;
+            txtDescricao.ReadOnly = false;
+            txtObs.ReadOnly = false;
+            txtDataCadastro.ReadOnly = false;
+            txtStatus.ReadOnly = false;
+            txtValor.ReadOnly = false;
+            txtLimiteEmprestimo.ReadOnly = false;
+            txtUsuarioCriacao.ReadOnly = false;
+            txtUsuarioLocador.ReadOnly = false;
         }
     }
 }

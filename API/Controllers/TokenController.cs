@@ -52,7 +52,6 @@ namespace API.Controllers
                 new System.Security.Principal.GenericIdentity(User.Id.ToString(), "Login"),
                 new[]
                 {
-
                     new Claim(ClaimTypes.Name, User.Id.ToString())
                 });
 
@@ -74,7 +73,6 @@ namespace API.Controllers
             {
                 acesstoken = strToken,
                 userid = User.Id
-
             }));
             task.Wait(1000);
             task.Start();

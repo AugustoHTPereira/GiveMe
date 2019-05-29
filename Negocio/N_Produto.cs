@@ -61,5 +61,28 @@ namespace Negocio
                 throw new Exception(ex.Message);
             }
         }
+
+        public static void Give(Produto Produto, Historico Historico)
+        {
+            try
+            {
+                using (IConexao conexao = new ConexaoSqlServer())
+                {
+                    using (D_Produto DProduto = new D_Produto(conexao))
+                    {
+                        DProduto.Update(Produto);
+                    }
+
+                    using(D_Historico DHistorico = new D_Historico(conexao))
+                    {
+                        DHistorico.Insert(Historico);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

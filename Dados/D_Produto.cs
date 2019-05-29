@@ -74,7 +74,23 @@ namespace Dados
         }
         public void Update(Produto Model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlCommand cmd = _conexao.Open().CreateCommand())
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = "UPDATE PRODUTO SET USUARIOLOCADORID = @USUARIOLOCADORID WHERE ID = @ID";
+
+                    cmd.Parameters.AddWithValue("@USUARIOLOCADORID", Model.UsuarioLocatario.Id);
+                    cmd.Parameters.AddWithValue("@ID", Model.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Usuario: " + ex.Message);
+            }
         }
         public IList<Produto> SelectAllByCriator(int CreatorId)
         {
@@ -103,8 +119,8 @@ namespace Dados
                         " INNER JOIN USUARIO UC ON UC.ID = P.USUARIOCRIACAOID" +
                         " INNER JOIN PESSOA PC ON PC.ID = UC.PESSOAID" +
                         " LEFT JOIN USUARIO UL ON UL.ID = P.USUARIOLOCADORID" +
-                        " LEFT JOIN PESSOA PL ON PL.ID = UL.PESSOAID" +
-                        " WHERE UC.ID = @USUARIOCRIACAOID";
+                        " LEFT JOIN PESSOA PL ON PL.ID = UL.PESSOAID";//     +
+                        //" WHERE UC.ID = @USUARIOCRIACAOID";
 
                     cmd.Parameters.AddWithValue("@USUARIOCRIACAOID", CreatorId);
                     using (SqlDataReader reader = cmd.ExecuteReader())

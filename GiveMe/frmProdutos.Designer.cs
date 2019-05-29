@@ -36,6 +36,12 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gvProdutos = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnNovo = new System.Windows.Forms.Button();
+            this.btnPegar = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -51,10 +57,7 @@
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabProdutos.SuspendLayout();
@@ -142,6 +145,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.txtId);
+            this.tabPage2.Controls.Add(this.btnNovo);
+            this.tabPage2.Controls.Add(this.btnPegar);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label7);
@@ -168,6 +174,72 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Novo";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnNovo
+            // 
+            this.btnNovo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNovo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(126)))), ((int)(((byte)(168)))));
+            this.btnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnNovo.ForeColor = System.Drawing.Color.White;
+            this.btnNovo.Location = new System.Drawing.Point(685, 203);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(99, 43);
+            this.btnNovo.TabIndex = 20;
+            this.btnNovo.Text = "Novo";
+            this.btnNovo.UseVisualStyleBackColor = false;
+            this.btnNovo.Click += new System.EventHandler(this.BtnNovo_Click);
+            // 
+            // btnPegar
+            // 
+            this.btnPegar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPegar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(126)))), ((int)(((byte)(168)))));
+            this.btnPegar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPegar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnPegar.ForeColor = System.Drawing.Color.White;
+            this.btnPegar.Location = new System.Drawing.Point(685, 153);
+            this.btnPegar.Name = "btnPegar";
+            this.btnPegar.Size = new System.Drawing.Size(99, 43);
+            this.btnPegar.TabIndex = 19;
+            this.btnPegar.Text = "Pegar";
+            this.btnPegar.UseVisualStyleBackColor = false;
+            this.btnPegar.Click += new System.EventHandler(this.BtnPegar_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(368, 167);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 17);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Locatário";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(368, 110);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 17);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Dono";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(368, 56);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(48, 17);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Status";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(368, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 17);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Cadastro:";
             // 
             // label5
             // 
@@ -294,41 +366,13 @@
             this.txtNome.Size = new System.Drawing.Size(357, 22);
             this.txtNome.TabIndex = 0;
             // 
-            // label6
+            // txtId
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(368, 5);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 17);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Cadastro:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(368, 56);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 17);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Status";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(368, 110);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 17);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Dono";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(368, 167);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 17);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Locatário";
+            this.txtId.Location = new System.Drawing.Point(686, 6);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(100, 22);
+            this.txtId.TabIndex = 21;
+            this.txtId.Visible = false;
             // 
             // frmProdutos
             // 
@@ -383,5 +427,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnPegar;
+        private System.Windows.Forms.Button btnNovo;
+        private System.Windows.Forms.TextBox txtId;
     }
 }
