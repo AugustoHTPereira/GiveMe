@@ -18,9 +18,9 @@ namespace API.Controllers
         }
 
         // GET: api/Produto/5
-        public IEnumerable<Produto> Get(int Id)
+        public IEnumerable<Produto> Get(int UsuarioId)
         {
-            return Negocio.N_Produto.SelectAllByCriator(Id);
+            return Negocio.N_Produto.SelectAllByCriator(UsuarioId);
         }
 
         // POST: api/Produto

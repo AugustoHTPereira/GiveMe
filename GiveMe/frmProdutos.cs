@@ -28,7 +28,7 @@ namespace GiveMe
         {
             try
             {
-                var request = (HttpWebRequest)WebRequest.Create(_BaseURL + "Produto/?usuarioid=" + _Usuario.Id);
+                var request = (HttpWebRequest)WebRequest.Create(_BaseURL + "Produto/?UsuarioId=" + _Usuario.Id);
                 request.Method = "Get";
                 request.Headers["Authorization"] = _Usuario.Token;
                 request.ContentType = "application/json";
