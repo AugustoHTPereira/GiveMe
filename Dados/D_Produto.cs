@@ -119,8 +119,8 @@ namespace Dados
                         " INNER JOIN USUARIO UC ON UC.ID = P.USUARIOCRIACAOID" +
                         " INNER JOIN PESSOA PC ON PC.ID = UC.PESSOAID" +
                         " LEFT JOIN USUARIO UL ON UL.ID = P.USUARIOLOCADORID" +
-                        " LEFT JOIN PESSOA PL ON PL.ID = UL.PESSOAID";//     +
-                        //" WHERE UC.ID = @USUARIOCRIACAOID";
+                        " LEFT JOIN PESSOA PL ON PL.ID = UL.PESSOAID" +
+                        " WHERE UC.ID = @USUARIOCRIACAOID";
 
                     cmd.Parameters.AddWithValue("@USUARIOCRIACAOID", CreatorId);
                     using (SqlDataReader reader = cmd.ExecuteReader())

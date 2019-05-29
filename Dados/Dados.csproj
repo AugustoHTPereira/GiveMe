@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexao\ConexaoSqlServer.cs" />
+    <Compile Include="Conexao\ConexaoSQLServer.cs" />
     <Compile Include="Conexao\Interface\IConexao.cs" />
     <Compile Include="D_Historico.cs" />
     <Compile Include="D_JsonWebToken.cs" />

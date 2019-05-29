@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace API.Controllers
 {
-    [Authorize]
+    
     public class ProdutoController : ApiController
     {
         // GET: api/Produto
@@ -18,14 +18,27 @@ namespace API.Controllers
         }
 
         // GET: api/Produto/5
-        public IEnumerable<Produto> Get(int usuarioid)
+        public IEnumerable<Produto> Get(int Id)
         {
-            return Negocio.N_Produto.SelectAllByCriator(usuarioid);
+            return Negocio.N_Produto.SelectAllByCriator(Id);
         }
 
         // POST: api/Produto
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody]Produto Produto)
         {
+            if (Produto == null)
+                return NotFound();
+
+            try
+            {
+                Negocio.N_Produto.Insert(Produto);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT: api/Produto/5
