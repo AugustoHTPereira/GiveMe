@@ -36,6 +36,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gvProdutos = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnPegar = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -57,7 +58,6 @@
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabProdutos.SuspendLayout();
@@ -76,6 +76,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 40);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
             // lblTitulo
             // 
@@ -174,6 +175,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Novo";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(686, 6);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(100, 22);
+            this.txtId.TabIndex = 21;
+            this.txtId.Visible = false;
             // 
             // btnNovo
             // 
@@ -365,14 +374,6 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(357, 22);
             this.txtNome.TabIndex = 0;
-            // 
-            // txtId
-            // 
-            this.txtId.Location = new System.Drawing.Point(686, 6);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(100, 22);
-            this.txtId.TabIndex = 21;
-            this.txtId.Visible = false;
             // 
             // frmProdutos
             // 

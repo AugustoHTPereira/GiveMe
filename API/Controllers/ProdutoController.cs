@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace API.Controllers
 {
-    
+    //[Authorize]
     public class ProdutoController : ApiController
     {
         // GET: api/Produto

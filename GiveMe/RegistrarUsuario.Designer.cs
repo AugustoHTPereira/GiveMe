@@ -235,6 +235,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "RegistrarUsuario";
             this.Text = "Cadastrar Novo";
+            this.Load += new System.EventHandler(this.RegistrarUsuario_Load);
             this.gbPessoais.ResumeLayout(false);
             this.gbPessoais.PerformLayout();
             this.ResumeLayout(false);

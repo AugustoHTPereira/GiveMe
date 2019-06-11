@@ -74,5 +74,10 @@ namespace GiveMe
             MessageBox.Show("Seu cadastro foi realizado com sucesso. Verifique sua caixa de entrada de e-mail para confirmar seu registro.", "Sucesso!");
             this.Hide();
         }
+
+        private void RegistrarUsuario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

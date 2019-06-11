@@ -30,7 +30,7 @@ namespace Dados
                 using (SqlCommand cmd = _conexao.Open().CreateCommand())
                 {
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = "INSERT INTO USUARIO (LOGIN, SENHA, EMAIL, PESSOAID) VALUES (@LOGIN, @SENHA, @EMAIL, @PESSOAID);";
+                    cmd.CommandText = "INSERT INTO USUARIO (LOGIN, SENHA, EMAIL, PESSOAID, CONFIRMACAOEMAIL) VALUES (@LOGIN, @SENHA, @EMAIL, @PESSOAID, 1);"; // A FACILITAR, CONFIRMACAO DE EMAIL INSERIDA COMO VERDADEIRO
                     cmd.Parameters.AddWithValue("@LOGIN", Model.Login);
                     cmd.Parameters.AddWithValue("@SENHA", Model.Senha);
                     cmd.Parameters.AddWithValue("@EMAIL", Model.Email);

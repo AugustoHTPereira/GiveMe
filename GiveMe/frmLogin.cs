@@ -35,16 +35,24 @@ namespace GiveMe
                 return;
             }
 
-            if (GetToken(out string Token))
+            //if (GetToken(out string Token))
+            //{
+            //JsonWebToken TokenData = JsonConvert.DeserializeObject<JsonWebToken>(Token);
+            //_Usuario = TokenData.user;
+            //_Usuario.Token = TokenData.acesstoken;
+            _Usuario = N_Usuario.Logar(txtLogin.Text, txtSenha.Text);
+            if (_Usuario != null)
             {
-                JsonWebToken TokenData = JsonConvert.DeserializeObject<JsonWebToken>(Token);
-                _Usuario = TokenData.user;
-                _Usuario.Token = TokenData.acesstoken;
-
                 frm_Master master = new frm_Master(_Usuario);
                 master.Show();
                 this.Hide();
             }
+            else
+            {
+                MessageBox.Show("Verifique seus dados", "Acesso negado");
+                return;
+            }
+            //}
         }
 
         private void lkbRegistrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

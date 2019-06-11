@@ -22,27 +22,34 @@ namespace GiveMe
             _Usuario = Usuario;
             CarregaProdutos();
             btnPegar.Visible = false;
+
+            txtDataCadastro.ReadOnly = true;
+            txtStatus.ReadOnly = true;
+            txtUsuarioCriacao.ReadOnly = true;
+            txtUsuarioLocador.ReadOnly = true;
         }
 
         void CarregaProdutos()
         {
             try
             {
-                var request = (HttpWebRequest)WebRequest.Create(_BaseURL + "Produto/?UsuarioId=" + _Usuario.Id);
-                request.Method = "Get";
-                request.Headers["Authorization"] = _Usuario.Token;
-                request.ContentType = "application/json";
-                var response = (HttpWebResponse)request.GetResponse();
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    using (Stream responseStream = response.GetResponseStream())
-                    {
-                        StreamReader reader = new StreamReader(responseStream, System.Text.Encoding.UTF8);
-                        string result = reader.ReadToEnd();
+                //var request = (HttpWebRequest)WebRequest.Create(_BaseURL + "Produto/?UsuarioId=" + _Usuario.Id);
+                //request.Method = "Get";
+                //request.Headers["Authorization"] = _Usuario.Token;
+                //request.ContentType = "application/json";
+                //var response = (HttpWebResponse)request.GetResponse();
+                //if (response.StatusCode == HttpStatusCode.OK)
+                //{
+                //    using (Stream responseStream = response.GetResponseStream())
+                //    {
+                //        StreamReader reader = new StreamReader(responseStream, System.Text.Encoding.UTF8);
+                //        string result = reader.ReadToEnd();
 
-                        _Produtos = JsonConvert.DeserializeObject<List<Produto>>(result);
-                    }
-                }
+                //        _Produtos = JsonConvert.DeserializeObject<List<Produto>>(result);
+                //    }
+                //}
+
+                _Produtos = N_Produto.SelectAllByCriator(_Usuario.Id);
             }
             catch (Exception ex)
             {
@@ -52,13 +59,13 @@ namespace GiveMe
 
             if (_Produtos != null)
             {
-                var colection = from i in _Produtos
+                var collection = (from i in _Produtos
                                 select new
                                 {
                                     Id = i.Id,
                                     Produto = i.Nome,
                                     Descricao = i.Descricao,
-                                    Observacao = i.Observacao == string.Empty ? "N/A" : i.Observacao,
+                                    Observacao = string.IsNullOrEmpty(i.Observacao) ? "N/A" : i.Observacao,
                                     Cadastro = i.DataCadastro,
                                     Status = i.Status == 0 ? "Indisponível" : i.Status == 1 ? "Disponível" : i.Status == 2 ? "Alugado" : "NULL",
                                     Situacao = i.Situacao == true ? "Ativo" : "Inativo",
@@ -66,8 +73,8 @@ namespace GiveMe
                                     LimiteDias = i.LimiteDiasEmprestimo,
                                     Dono = i.UsuarioCriacao.Pessoa.Nome,
                                     Locatario = i.UsuarioLocatario != null ? (i.UsuarioLocatario.Pessoa.Nome == null || i.UsuarioLocatario.Pessoa.Nome == string.Empty ? "N/A" : i.UsuarioLocatario.Pessoa.Nome) : "N/A"
-                                };
-                gvProdutos.DataSource = colection.ToList();
+                                }).ToList();
+                gvProdutos.DataSource = collection;
             }
         }
         private void GvProdutos_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -133,6 +140,8 @@ namespace GiveMe
                     Valor = decimal.Parse(txtValor.Text)
                 };
                 N_Produto.Insert(produto);
+                
+
                 CarregaProdutos();
             }
             catch (Exception ex)
@@ -179,12 +188,17 @@ namespace GiveMe
             txtNome.ReadOnly = false;
             txtDescricao.ReadOnly = false;
             txtObs.ReadOnly = false;
-            txtDataCadastro.ReadOnly = false;
-            txtStatus.ReadOnly = false;
             txtValor.ReadOnly = false;
             txtLimiteEmprestimo.ReadOnly = false;
+            txtDataCadastro.ReadOnly = false;
+            txtStatus.ReadOnly = false;
             txtUsuarioCriacao.ReadOnly = false;
             txtUsuarioLocador.ReadOnly = false;
+        }
+
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
