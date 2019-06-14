@@ -58,12 +58,16 @@
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pbImagem = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabProdutos.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvProdutos)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -146,6 +150,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.pbImagem);
+            this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.txtId);
             this.tabPage2.Controls.Add(this.btnNovo);
             this.tabPage2.Controls.Add(this.btnPegar);
@@ -375,6 +381,33 @@
             this.txtNome.Size = new System.Drawing.Size(357, 22);
             this.txtNome.TabIndex = 0;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(126)))), ((int)(((byte)(168)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(685, 76);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 71);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Upload Imagem";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // pbImagem
+            // 
+            this.pbImagem.Location = new System.Drawing.Point(372, 216);
+            this.pbImagem.Name = "pbImagem";
+            this.pbImagem.Size = new System.Drawing.Size(104, 79);
+            this.pbImagem.TabIndex = 23;
+            this.pbImagem.TabStop = false;
+            // 
             // frmProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -395,6 +428,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvProdutos)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -431,5 +465,8 @@
         private System.Windows.Forms.Button btnPegar;
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.PictureBox pbImagem;
     }
 }

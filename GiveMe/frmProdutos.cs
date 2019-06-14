@@ -3,6 +3,7 @@ using Negocio;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -48,7 +49,7 @@ namespace GiveMe
                 //        _Produtos = JsonConvert.DeserializeObject<List<Produto>>(result);
                 //    }
                 //}
-
+                // NÃO ESTÁ PEGANDO APENAS O DO USUÁRIO DE CRIAÇÃO, MOSTRA OS PRODUTOS NA LISTA (WHERE COMENTADO)
                 _Produtos = N_Produto.SelectAllByCriator(_Usuario.Id);
             }
             catch (Exception ex)
@@ -140,7 +141,7 @@ namespace GiveMe
                     Valor = decimal.Parse(txtValor.Text)
                 };
                 N_Produto.Insert(produto);
-                
+                                                  
 
                 CarregaProdutos();
             }
@@ -199,6 +200,31 @@ namespace GiveMe
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = true;
+            openFileDialog1.Title = "Selecionar Foto";
+            openFileDialog1.InitialDirectory = @"C:\";
+            //filtra para exibir somente arquivos de imagens
+            openFileDialog1.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" + "All files (*.*)|*.*";
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.CheckPathExists = true;
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+            openFileDialog1.ReadOnlyChecked = true;
+            openFileDialog1.ShowReadOnly = true;
+            if (openFileDialog1.ShowDialog().Equals(DialogResult.OK))
+            {
+                Image Imagem = Image.FromFile(openFileDialog1.FileName);
+                Produto PROD = _Produtos.FirstOrDefault(i => i.Id.Equals(int.Parse(txtId.Text)));
+                PROD.Foto = new Modelo.Imagem();
+                PROD.Foto.Caminho = openFileDialog1.FileName;
+                pbImagem.Image = Imagem;
+                pbImagem.SizeMode = PictureBoxSizeMode.CenterImage;
+            }
+            MessageBox.Show("Aviso", "A imagem não será salva na base de dados.");
         }
     }
 }
